@@ -5,6 +5,7 @@ int main()
 {
     int a = 9;
     cout << a/3<<endl;
+    cout << "hi\n";
     int b=9;
     cout << b  << " "<< b+3<< endl;
     return 0;
