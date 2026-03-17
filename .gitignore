@@ -1,0 +1,12 @@
+# Ignore the compiled programs
+my_circle
+my_task
+task101
+new
+
+# Ignore Mac system folders
+*.dSYM/
+.DS_Store
+
+# Ignore text logs
+output.txt
