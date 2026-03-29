@@ -1,20 +1,23 @@
-# SDL2 Circle Drawing - Task 101
+# SDL2 Circle Drawing - Tasks 101 & 102
 **Author:** Addin Ahmed Digonto
 
 ## Project Overview
-This project is a C++ application that uses the **SDL2** library to render a graphical window and draw a circle using trigonometric calculations. 
+This repository contains two C++ applications developed with the **SDL2** library on macOS. These tasks demonstrate trigonometric rendering and basic frame-based animation.
+
+## Tasks
+- **Task 101 (Static Circle):** Renders a fixed green circle at the center of the window.
+- **Task 102 (Expanding Circle):** Animates a circle that increases in radius until it reaches the window boundaries.
 
 ## Features
-- Manual circle rendering logic (Sine and Cosine based).
+- Manual circle rendering logic using $x = r \cdot \cos(\theta)$ and $y = r \cdot \sin(\theta)$.
 - SDL2 window management and event polling.
-- Automated build system via Makefile.
+- Automated build system via a single Makefile.
 
 ## Prerequisites
-To run this project, you must have the **SDL2.framework** installed on your Mac in:
-`/Library/Frameworks/SDL2.framework`
+- macOS with **SDL2.framework** installed in `/Library/Frameworks/`.
 
-## Commands
-Use the following commands in the terminal:
-- `make` : Compiles the source code.
-- `make run` : Launches the application window.
-- `make clean` : Removes the executable file.
+## Terminal Commands
+- `make` : Compiles both Task 101 and Task 102.
+- `./circle101` : Runs the static circle task.
+- `./circle102` : Runs the expanding circle task.
+- `make clean` : Removes both executable files.
