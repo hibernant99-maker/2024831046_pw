@@ -12,24 +12,25 @@ void drawCircle(SDL_Renderer* renderer, int centerX, int centerY, int radius) {
 
 int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
-    SDL_Window* window = SDL_CreateWindow("Task 102: Expanding Circle", 
+    SDL_Window* window = SDL_CreateWindow("Task 102: Resetting Circle", 
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, 0);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     bool running = true;
     SDL_Event event;
-    
-    int radius = 0; // Starts at 0
-    int maxRadius = 300; // Limit (half of height)
+    int radius = 0;
+    int maxRadius = 300; // Half of height
 
     while (running) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) running = false;
         }
 
-        // --- TASK 102 LOGIC ---
+        // --- RESET LOGIC ---
         if (radius < maxRadius) {
-            radius++; // Increase radius each frame
+            radius++; 
+        } else {
+            radius = 0; // The "Reset" part
         }
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -39,7 +40,7 @@ int main(int argc, char* argv[]) {
         drawCircle(renderer, 400, 300, radius);
 
         SDL_RenderPresent(renderer);
-        SDL_Delay(10); // Controls the speed of expansion
+        SDL_Delay(10); 
     }
 
     SDL_DestroyRenderer(renderer);
