@@ -1,18 +1,18 @@
-# Compiler and Flags for Mac
-CXX = clang++
-FLAGS = -F/Library/Frameworks -framework SDL2 -Wl,-rpath,/Library/Frameworks
+# Existing Flags
+CXXFLAGS = -I/Library/Frameworks/SDL2.framework/Headers
+# ADD -Wl,-rpath,/Library/Frameworks to the LDFLAGS below
+LDFLAGS = -F/Library/Frameworks -framework SDL2 -Wl,-rpath,/Library/Frameworks
 
-# Default rule: Type 'make' to compile everything
-all: task101 task102
+all: circle101 circle102 circle103
 
-# Rule for Task 101 (Static Circle)
-task101:
-	$(CXX) task101.cpp $(FLAGS) -o circle101
+circle101: task101.cpp
+	g++ task101.cpp -o circle101 $(CXXFLAGS) $(LDFLAGS)
 
-# Rule for Task 102 (Expanding Circle)
-task102:
-	$(CXX) task102.cpp $(FLAGS) -o circle102
+circle102: task102.cpp
+	g++ task102.cpp -o circle102 $(CXXFLAGS) $(LDFLAGS)
 
-# Clean rule: Type 'make clean' to remove executables
+circle103: task103.cpp
+	g++ task103.cpp -o circle103 $(CXXFLAGS) $(LDFLAGS)
+
 clean:
-	rm -f circle101 circle102
+	rm -f circle101 circle102 circle103
