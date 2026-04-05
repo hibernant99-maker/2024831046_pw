@@ -1,41 +1,48 @@
 #include <SDL2/SDL.h>
-#include <cmath> // Required for sin() and cos()
+#include <math.h>
 
-// Function to draw the outline of a circle
-void drawCircle(SDL_Renderer* renderer, int centerX, int centerY, int radius) {
-    for (int i = 0; i < 360; i++) {
-        // Convert degrees to radians
-        double angle = i * M_PI / 180;
-        int x = centerX + static_cast<int>(radius * cos(angle));
-        int y = centerY + static_cast<int>(radius * sin(angle));
-        SDL_RenderDrawPoint(renderer, x, y);
+// Modified function to draw a FILLED circle instead of just an outline
+void drawFilledCircle(SDL_Renderer* renderer, int centerX, int centerY, int radius) {
+    // We create a bounding box around the circle
+    for (int w = 0; w < radius * 2; w++) {
+        for (int h = 0; h < radius * 2; h++) {
+            // Calculate distance from the center of the bounding box
+            int dx = radius - w; 
+            int dy = radius - h;
+            
+            // Pythagorean theorem: If distance squared <= radius squared, it's inside
+            if ((dx * dx + dy * dy) <= (radius * radius)) {
+                SDL_RenderDrawPoint(renderer, centerX + dx, centerY + dy);
+            }
+        }
     }
 }
 
 int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
     
-    SDL_Window* window = SDL_CreateWindow("C++ Circle Task", 
+    SDL_Window* window = SDL_CreateWindow("C Circle Task101", 
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, 0);
+    
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    bool running = true;
+    int running = 1; // In C, we often use 1 for true
     SDL_Event event;
 
     while (running) {
         while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) running = false;
+            if (event.type == SDL_QUIT) running = 0;
         }
 
-        // 1. Background Color (Black)
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        // 1. Background Color: RED (255, 0, 0)
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
         SDL_RenderClear(renderer);
 
-        // 2. Circle Color (Green)
+        // 2. Circle Color: GREEN (0, 255, 0)
         SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
         
-        // Draw circle at center (400, 300) with radius 150
-        drawCircle(renderer, 400, 300, 150);
+        // Use the new filled circle function
+        drawFilledCircle(renderer, 400, 300, 150);
 
         // 3. Show the result
         SDL_RenderPresent(renderer);
