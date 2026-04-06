@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
         }
 
         
-        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);//background color set to black
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);//background color set to black
         SDL_RenderClear(renderer);
 
         SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);//cicrle color logic
